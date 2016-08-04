@@ -3,6 +3,7 @@ get '/' do
 end
 
 get '/home' do 
+	byebug
 	if logged_in?
 		redirect '/users/:id/home'
 	else
