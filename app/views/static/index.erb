@@ -1,2 +1,10 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+<h2>sign in or up</h2>
+<form method="get" action="/users/new">
+	<input type="submit" value="give my damn account!">
+</form>
+<form method="get" action="/users/login">
+	Email:<input type="text" placeholder="your email!" name="user[email]">
+	Password:<input type="password" placeholder="whats your password?" name="user[password]">
+	<input type="submit" value="i wanna sign in now!">
+</form>
+<%= @error if @error %>

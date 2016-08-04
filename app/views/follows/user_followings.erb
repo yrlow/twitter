@@ -1,0 +1,5 @@
+<% @followings.each do |f| %>
+
+	<%= User.find(f.followed_id).profile_name %>
+	<br>
+<% end %>

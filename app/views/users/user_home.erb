@@ -1,0 +1,47 @@
+<h2>Home Page</h2>
+<% if logged_in? %>
+
+	<%= "Welcome, "+current_user.profile_name.to_s+"! :)" %>
+	<form method="post" action="/users/logout">
+		<input type="submit" value="signout">
+	</form>
+	<form method="get" action="/users/<%= current_user.id %>/edit">
+		<input type="submit" value="edit">
+	</form>
+
+	suggested friends:
+	<br>
+	<% @users.each do |u| %>
+		<%= "- - -"+u.profile_name.to_s %>
+		<form method="post" action="/users/<%= current_user.id %>/followed/<%= u.id %>">
+			<input type="submit" value="link us together!">
+		</form>
+		<br>
+	<% end %>
+
+	<form method="get" action="/follow/user/<%= current_user.id %>/followings">
+		<input type="submit" value="check out my followings">
+	</form>
+
+	<form method="post" action="/users/<%= current_user.id %>/tweets" >
+		<input type="text" name="tweet[tweet]">
+		<input type="submit" value="tweet it bro!">
+	</form>
+	<%= @tweet_error if @tweet_error %>
+	<% if @tweets.count != 0 %>
+		<h3>Your Tweets:</h3>
+		<% @tweets.each_with_index do |t, index| %>
+			<%= index+1 %>
+			<%= t.tweet %>
+			<form method="get" action="/users/<%= current_user.id %>/tweets/<%= t.id %>">
+				<input type="submit" value="view tweet">
+			</form>
+			<form method="post" action="/users/<%= current_user.id %>/tweets/<%= t.id %>">
+				<input type="hidden" name="_method" value="delete">
+				<input type="submit" value="delete">
+			</form>			
+			<br>
+		<% end %>
+	<% end %>
+<% end %>
+

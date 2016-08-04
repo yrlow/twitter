@@ -1,0 +1,8 @@
+<%= "Hi, "+current_user.profile_name.to_s+"! :) Below is your ##{@tweet.id} tweet!" %><br>
+<%= @tweet.tweet %>
+<form method="post" action="/users/<%= current_user.id %>/tweets/<%= @tweet.id %>" >
+	<input type="text" name="tweet[tweet]">
+	<input type="hidden" name="_method" value="put">
+	<input type="submit" value="change my tweet bro!">
+</form>
+<%= @error if @error %>

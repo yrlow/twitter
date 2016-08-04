@@ -1,0 +1,10 @@
+<h2>User on the chopboard now is: <%= current_user.profile_name %></h2>
+<form method="post" action="/users/<%= current_user.id %>">
+	New Profile Name:<input type="text" placeholder="<%= current_user.profile_name %>" name="user[profile_name]"><br>
+	New Email:<input type="text" placeholder="<%= current_user.email %>" name="user[email]"><br>
+	password:<input type="password" placeholder="at least 6..20 characters" name="user[password]"><br>
+	confirm your password:<input type="password" placeholder="REMEMBER! It has to be the same as above" name="user[password_confirmation]"><br>
+	<input type="hidden" name="_method" value="PUT">
+	<input type="submit" value="I confirm that i have full authority to make such changes to this account. Change it!">
+</form>
+<%= @error if @error %>
